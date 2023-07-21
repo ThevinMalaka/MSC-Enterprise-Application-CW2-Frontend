@@ -84,7 +84,7 @@ export const addWeight = async (info) => {
 export const getWeightList = async (info) => {
   try {
     return Promise.resolve(
-      await apiInstance.get(`${ApiConstants.WEIGHT}/${info}`)
+      await apiInstance.get(`${ApiConstants.ALL_WEIGHT}/${info}`)
     );
   } catch (error) {
     return Promise.reject(error);

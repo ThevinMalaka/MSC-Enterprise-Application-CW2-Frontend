@@ -130,10 +130,12 @@ export function* addWeightFunction(payload) {
     const { info } = payload;
     const { data, status } = yield call(addWeight, info);
 
-    if (status !== httpStatus.OK) {
+    if (status !== httpStatus.CREATED) {
       throw new Error();
     }
     yield put(homeAction.addWeightSuccess());
+    // call getWeightListFunction to get the updated weight list
+    yield call(getWeightListFunction, { info: info.userId });
     toastr.clean(); // clean the previous toastr
     toastr.success("Success", "Weight added successfully.");
     setTimeout(() => {

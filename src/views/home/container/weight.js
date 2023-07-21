@@ -50,16 +50,18 @@ const WeightPage = () => {
 
   const handleAddCheatMeal = () => {
     if (weight !== "" && date !== "") {
+      // convert date to 2023-07-13 00:00:00.000000 format
+      const dateObj = new Date(date);
       addWeight({
         weight,
-        date,
+        date: dateObj,
         userId: userData.id,
       });
     }
   };
 
   useEffect(() => {
-    getWeightList();
+    getWeightList(userData.id);
   }, []);
 
   useEffect(() => {
@@ -126,11 +128,12 @@ const WeightPage = () => {
                 ) : (
                   <List>
                     {weightList &&
-                      weightList.map((meal, index) => (
+                      weightList.map((weight, index) => (
                         <ListItem key={index}>
                           <ListItemText
-                            primary={meal.meal}
-                            secondary={`Type: ${meal.type}, Calories: ${meal.calories}, Date: ${meal.date}`}
+                            secondary={`Weight: ${weight.weight} - Date: ${
+                              weight?.date?.split("T")[0]
+                            }`}
                           />
                         </ListItem>
                       ))}
