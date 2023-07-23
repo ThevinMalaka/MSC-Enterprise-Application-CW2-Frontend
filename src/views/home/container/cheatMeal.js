@@ -69,24 +69,20 @@ const CheatMealPage = () => {
       calories !== "" &&
       date !== ""
     ) {
-      const newCheatMeal = {
-        meal: cheatMeal,
+      // convert date to 2023-07-13 00:00:00.000000 format
+      const dateObj = new Date(date);
+      addCheatMeal({
+        name: cheatMeal,
         type: mealType,
-        calories: calories,
-        date: date,
-      };
-      setCheatMeals([...cheatMeals, newCheatMeal]);
+        calories,
+        date: dateObj,
+        userId: userData.id,
+        description: "",
+      });
       setCheatMeal("");
       setMealType("");
       setCalories("");
       setDate("");
-      addCheatMeal({
-        cheatMeal,
-        mealType,
-        calories,
-        date,
-        userId: userData.id,
-      });
     }
   };
 
@@ -97,9 +93,7 @@ const CheatMealPage = () => {
   }, [cheatMealListData]);
 
   useEffect(() => {
-    getCheatMealList({
-      userId: userData.id,
-    });
+    getCheatMealList(userData.id);
   }, [getCheatMealList, userData.id]);
 
   return (
@@ -187,7 +181,11 @@ const CheatMealPage = () => {
                       <ListItem key={index}>
                         <ListItemText
                           primary={meal.meal}
-                          secondary={`Type: ${meal.type}, Calories: ${meal.calories}, Date: ${meal.date}`}
+                          secondary={`Name: ${meal.name}, Type: ${
+                            meal.type
+                          }, Calories: ${meal.calories}, Date: ${
+                            meal?.date?.split("T")[0]
+                          }`}
                         />
                       </ListItem>
                     ))}

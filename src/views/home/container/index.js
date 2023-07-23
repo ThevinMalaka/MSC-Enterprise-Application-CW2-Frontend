@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { Grid, Container, Typography } from "@mui/material";
 
 import { updateTokenToReducer } from "../../login/actions";
-import { getLoggedUserData } from "../selectors";
+import { getUserLastWeightRequest } from "../actions";
+import { getLoggedUserData, userLastWeight } from "../selectors";
 import { AppWidgetSummary } from "../../../components/dashboard";
 import Iconify from "../../../components/iconify";
 
 const HomeView = () => {
   const navigate = useNavigate();
   const userData = useSelector((state) => getLoggedUserData(state));
+  const userLastWeightData = useSelector((state) => userLastWeight(state));
+  const { weight } = userLastWeightData || { weight: 0 };
 
   const dispatch = useDispatch();
 
@@ -21,8 +24,16 @@ const HomeView = () => {
     [dispatch]
   );
 
+  const getUserLastWeight = useCallback(
+    (info) => {
+      dispatch(getUserLastWeightRequest(info));
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     updateToken();
+    getUserLastWeight(userData?.id);
   }, []);
 
   return (
@@ -38,7 +49,7 @@ const HomeView = () => {
           <Grid item xs={12} sm={6} md={6}>
             <AppWidgetSummary
               title="User Current Weight"
-              total={`${userData?.weight || 0} Kg`}
+              total={`${weight || 0} Kg`}
               icon={"ant-design:user-outlined"}
             />
           </Grid>

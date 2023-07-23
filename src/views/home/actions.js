@@ -231,3 +231,26 @@ export function getReportDataFailed(info) {
 }
 
 // ---------------------------------------------
+
+export function getUserLastWeightRequest(info) {
+  return {
+    type: types.GET_USER_LAST_WEIGHT_REQUEST,
+    info,
+  };
+}
+
+export function getUserLastWeightSuccess(info) {
+  return {
+    type: types.GET_USER_LAST_WEIGHT_SUCCESS,
+    info,
+  };
+}
+
+export function getUserLastWeightFailed(info) {
+  return {
+    type: types.GET_USER_LAST_WEIGHT_FAILED,
+    info,
+  };
+}
+
+// ---------------------------------------------

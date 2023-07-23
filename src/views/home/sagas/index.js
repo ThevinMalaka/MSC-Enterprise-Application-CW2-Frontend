@@ -17,6 +17,7 @@ import {
   getWeightListFunction,
   addCheatMealFunction,
   getCheatMealListFunction,
+  getUserLastWeightFunction,
 } from "./homeSaga";
 
 export const homeSaga = [
@@ -32,6 +33,7 @@ export const homeSaga = [
   ),
   takeLatest(types.SUBMIT_COMPLETED_WORKOUT_REQUEST, completeWorkoutFunction),
   takeLatest(types.ADD_WEIGHT_REQUEST, addWeightFunction),
+  takeLatest(types.GET_USER_LAST_WEIGHT_REQUEST, getUserLastWeightFunction),
   takeLatest(types.GET_WEIGHT_LIST_REQUEST, getWeightListFunction),
   takeLatest(types.ADD_CHEAT_MEAL_REQUEST, addCheatMealFunction),
   takeLatest(types.GET_CHEAT_MEAL_LIST_REQUEST, getCheatMealListFunction),

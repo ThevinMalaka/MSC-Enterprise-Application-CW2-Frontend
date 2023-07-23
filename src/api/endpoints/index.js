@@ -91,6 +91,16 @@ export const getWeightList = async (info) => {
   }
 };
 
+export const getUserLastWeight = async (info) => {
+  try {
+    return Promise.resolve(
+      await apiInstance.get(`${ApiConstants.LAST_WEIGHT}/${info}`)
+    );
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 export const addCheatMeal = async (info) => {
   try {
     return Promise.resolve(

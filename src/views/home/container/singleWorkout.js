@@ -128,6 +128,8 @@ const SingleWorkoutView = () => {
                           enrollWorkoutPlan({
                             workoutPlanId: id,
                             userId: userData.id,
+                            date: new Date(),
+                            startDate: new Date(),
                           });
                         }}
                       >

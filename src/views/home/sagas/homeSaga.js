@@ -14,6 +14,7 @@ import {
   addCheatMeal,
   getCheatMealList,
   getReportData,
+  getUserLastWeight,
 } from "../../../api/endpoints";
 
 export function* workoutPlanEnrollFunction(payload) {
@@ -136,6 +137,7 @@ export function* addWeightFunction(payload) {
     yield put(homeAction.addWeightSuccess());
     // call getWeightListFunction to get the updated weight list
     yield call(getWeightListFunction, { info: info.userId });
+    yield call(getUserLastWeightFunction, { info: info.userId });
     toastr.clean(); // clean the previous toastr
     toastr.success("Success", "Weight added successfully.");
     setTimeout(() => {
@@ -165,15 +167,31 @@ export function* getWeightListFunction(payload) {
   }
 }
 
+export function* getUserLastWeightFunction(payload) {
+  try {
+    const { info } = payload;
+    const { data, status } = yield call(getUserLastWeight, info);
+
+    if (status !== httpStatus.OK) {
+      throw new Error();
+    }
+    yield put(homeAction.getUserLastWeightSuccess(data));
+  } catch (error) {
+    yield put(homeAction.getUserLastWeightFailed());
+  }
+}
+
 export function* addCheatMealFunction(payload) {
   try {
     const { info } = payload;
     const { data, status } = yield call(addCheatMeal, info);
 
-    if (status !== httpStatus.OK) {
+    if (status !== httpStatus.CREATED) {
       throw new Error();
     }
     yield put(homeAction.addCheatMealSuccess());
+    // call getCheatMealListFunction to get the updated cheat meal list
+    yield call(getCheatMealListFunction, { info: info.userId });
     toastr.clean(); // clean the previous toastr
     toastr.success("Success", "Add cheat meal successfully.");
     setTimeout(() => {
