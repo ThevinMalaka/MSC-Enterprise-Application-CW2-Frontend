@@ -9,7 +9,7 @@ const initialState = {
   submitCompletedWorkoutStatus: false,
   userWeightList: [],
   cheatMealList: [],
-  userReportData: REPORTS,
+  userReportData: "",
   userPredictionData: PREDICTIONS,
   userLastWeight: 0,
 };

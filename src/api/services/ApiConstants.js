@@ -27,5 +27,5 @@ export default {
   WORKOUT: "/workout/Workout",
   USER_ENROLLED_WORKOUT_PLAN: "/workout/UserWorkoutEnrollment/user",
   COMPLETE_WORKOUT: "workout/UserWorkoutEnrollment/complete",
-  REPORT: "/workout/Report/User",
+  REPORT: "/workout/Report",
 };

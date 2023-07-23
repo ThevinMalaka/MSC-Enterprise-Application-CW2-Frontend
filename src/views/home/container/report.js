@@ -26,9 +26,7 @@ const ReportPage = () => {
   );
 
   useEffect(() => {
-    getReportData({
-      userId: userData.id,
-    });
+    getReportData(userData.id);
   }, []);
 
   useEffect(() => {
@@ -44,10 +42,9 @@ const ReportPage = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell>Weight</TableCell>
-              <TableCell>If Done Workout</TableCell>
-              <TableCell>Duration</TableCell>
+              <TableCell>Plan Name</TableCell>
+              <TableCell>Start Date</TableCell>
+              <TableCell>Completed Days</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -58,11 +55,10 @@ const ReportPage = () => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.date}
+                    {row.workoutPlanName}
                   </TableCell>
-                  <TableCell>{row.weight}</TableCell>
-                  <TableCell>{row.workout}</TableCell>
-                  <TableCell>{row.duration}</TableCell>
+                  <TableCell>{row.startDate.split("T")[0]}</TableCell>
+                  <TableCell>{row.completedDays}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
