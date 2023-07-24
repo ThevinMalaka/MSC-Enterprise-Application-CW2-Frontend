@@ -130,3 +130,13 @@ export const getReportData = async (info) => {
     return Promise.reject(error);
   }
 };
+
+export const getPredictionData = async (info) => {
+  try {
+    return Promise.resolve(
+      await apiInstance.get(`${ApiConstants.PREDICTION}/${info}`)
+    );
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

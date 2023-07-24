@@ -19,6 +19,7 @@ import {
   getCheatMealListFunction,
   getUserLastWeightFunction,
   getReportDataFunction,
+  getPredictionDataFunction,
 } from "./homeSaga";
 
 export const homeSaga = [
@@ -39,4 +40,5 @@ export const homeSaga = [
   takeLatest(types.ADD_CHEAT_MEAL_REQUEST, addCheatMealFunction),
   takeLatest(types.GET_CHEAT_MEAL_LIST_REQUEST, getCheatMealListFunction),
   takeLatest(types.GET_REPORT_DATA_REQUEST, getReportDataFunction),
+  takeLatest(types.GET_USER_PREDICTION_DATA_REQUEST, getPredictionDataFunction),
 ];

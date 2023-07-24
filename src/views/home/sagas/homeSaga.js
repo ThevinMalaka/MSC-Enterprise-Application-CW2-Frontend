@@ -15,6 +15,7 @@ import {
   getCheatMealList,
   getReportData,
   getUserLastWeight,
+  getPredictionData,
 } from "../../../api/endpoints";
 
 export function* workoutPlanEnrollFunction(payload) {
@@ -232,5 +233,19 @@ export function* getReportDataFunction(payload) {
     yield put(homeAction.getReportDataSuccess(data));
   } catch (error) {
     yield put(homeAction.getReportDataFailed());
+  }
+}
+
+export function* getPredictionDataFunction(payload) {
+  try {
+    const { info } = payload;
+    const { data, status } = yield call(getPredictionData, info);
+
+    if (status !== httpStatus.OK) {
+      throw new Error();
+    }
+    yield put(homeAction.getUserPredictionDataSuccess(data));
+  } catch (error) {
+    yield put(homeAction.getUserPredictionDataFailed());
   }
 }

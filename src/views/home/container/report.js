@@ -48,6 +48,18 @@ const ReportPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
+            {reportData && reportData.length == 0 && (
+              <TableRow
+                key={"No Data"}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  No Data
+                </TableCell>
+                <TableCell>No Data</TableCell>
+                <TableCell>No Data</TableCell>
+              </TableRow>
+            )}
             {reportData &&
               reportData.map((row) => (
                 <TableRow

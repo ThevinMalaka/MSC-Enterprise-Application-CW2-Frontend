@@ -12,6 +12,13 @@ import {
   ListItemText,
   Container,
 } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import { addWeightRequest, getWeightListRequest } from "../actions";
 import { userWeightList, getLoggedUserData } from "../selectors";
@@ -122,22 +129,55 @@ const WeightPage = () => {
                   Weight History
                 </Typography>
                 {weightList.length === 0 ? (
-                  <Typography variant="subtitle1" gutterBottom>
-                    No weight recorded
-                  </Typography>
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell> No weight recorded</TableCell>
+                        </TableRow>
+                      </TableHead>
+                    </Table>
+                  </TableContainer>
                 ) : (
-                  <List>
-                    {weightList &&
-                      weightList.map((weight, index) => (
-                        <ListItem key={index}>
-                          <ListItemText
-                            secondary={`Weight: ${weight.weight} - Date: ${
-                              weight?.date?.split("T")[0]
-                            }`}
-                          />
-                        </ListItem>
-                      ))}
-                  </List>
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Date</TableCell>
+                          <TableCell>Weight</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {weightList &&
+                          weightList.map((row) => (
+                            <TableRow
+                              key={row.name}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell>{row.date?.split("T")[0]}</TableCell>
+                              <TableCell>{row.weight}</TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+
+                  // <List>
+                  //   {weightList &&
+                  //     weightList.map((weight, index) => (
+                  //       <ListItem key={index}>
+                  //         <ListItemText
+                  //           secondary={`Weight: ${weight.weight} kg - Date: ${
+                  //             weight?.date?.split("T")[0]
+                  //           }`}
+                  //         />
+                  //       </ListItem>
+                  //     ))}
+                  // </List>
                 )}
               </CardContent>
             </Card>

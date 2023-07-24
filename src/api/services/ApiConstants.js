@@ -28,4 +28,5 @@ export default {
   USER_ENROLLED_WORKOUT_PLAN: "/workout/UserWorkoutEnrollment/user",
   COMPLETE_WORKOUT: "workout/UserWorkoutEnrollment/complete",
   REPORT: "/workout/Report",
+  PREDICTION: "/workout/Prediction",
 };

@@ -254,3 +254,26 @@ export function getUserLastWeightFailed(info) {
 }
 
 // ---------------------------------------------
+
+export function getUserPredictionDataRequest(info) {
+  return {
+    type: types.GET_USER_PREDICTION_DATA_REQUEST,
+    info,
+  };
+}
+
+export function getUserPredictionDataSuccess(info) {
+  return {
+    type: types.GET_USER_PREDICTION_DATA_SUCCESS,
+    info,
+  };
+}
+
+export function getUserPredictionDataFailed(info) {
+  return {
+    type: types.GET_USER_PREDICTION_DATA_FAILED,
+    info,
+  };
+}
+
+// ---------------------------------------------

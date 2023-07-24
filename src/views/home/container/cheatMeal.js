@@ -16,6 +16,13 @@ import {
   MenuItem,
   Container,
 } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import { addCheatMealRequest, getCheatMealListRequest } from "../actions";
 import { cheatMealList, getLoggedUserData } from "../selectors";
@@ -172,24 +179,48 @@ const CheatMealPage = () => {
                   Cheat Meal History
                 </Typography>
                 {cheatMeals.length === 0 ? (
-                  <Typography variant="subtitle1" gutterBottom>
-                    No cheat meals recorded
-                  </Typography>
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell> No cheat meals recorded</TableCell>
+                        </TableRow>
+                      </TableHead>
+                    </Table>
+                  </TableContainer>
                 ) : (
-                  <List>
-                    {cheatMeals.map((meal, index) => (
-                      <ListItem key={index}>
-                        <ListItemText
-                          primary={meal.meal}
-                          secondary={`Name: ${meal.name}, Type: ${
-                            meal.type
-                          }, Calories: ${meal.calories}, Date: ${
-                            meal?.date?.split("T")[0]
-                          }`}
-                        />
-                      </ListItem>
-                    ))}
-                  </List>
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Name</TableCell>
+                          <TableCell>Type</TableCell>
+                          <TableCell>Calories</TableCell>
+                          <TableCell>Date</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {cheatMeals &&
+                          cheatMeals.map((row) => (
+                            <TableRow
+                              key={row.name}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {row.name}
+                              </TableCell>
+                              <TableCell>{row.type}</TableCell>
+                              <TableCell>{row.calories}</TableCell>
+                              <TableCell>{row.date?.split("T")[0]}</TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 )}
               </CardContent>
             </Card>

@@ -10,7 +10,10 @@ const initialState = {
   userWeightList: [],
   cheatMealList: [],
   userReportData: "",
-  userPredictionData: PREDICTIONS,
+  userPredictionData: {
+    date: Date.now(),
+    weight: "",
+  },
   userLastWeight: 0,
 };
 
@@ -74,6 +77,21 @@ export const homeReducers = createReducer(initialState, {
     return {
       ...state,
       userReportData: action.info,
+    };
+  },
+  [types.GET_USER_PREDICTION_DATA_SUCCESS](state, action) {
+    return {
+      ...state,
+      userPredictionData: action.info,
+    };
+  },
+  [types.GET_USER_PREDICTION_DATA_FAILED](state, action) {
+    return {
+      ...state,
+      userPredictionData: {
+        date: Date.now(),
+        weight: "",
+      },
     };
   },
 });
