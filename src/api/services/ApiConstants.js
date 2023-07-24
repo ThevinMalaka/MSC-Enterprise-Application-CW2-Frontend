@@ -11,8 +11,8 @@ export default {
   // CHEAT_MEAL: "/api/CheatMeal",
   // REPORT: "/api/Report/User",
 
-  BASE_URL: "https://localhost:7053",
-  // BASE_URL: "https://fitnessappapigateway.azurewebsites.net",
+  // BASE_URL: "https://localhost:7053",
+  BASE_URL: "https://fitnessappapigateway.azurewebsites.net",
 
   //User Service
   USER_REGISTER: "/user/User/create",
