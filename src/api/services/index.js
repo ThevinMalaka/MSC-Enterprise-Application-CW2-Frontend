@@ -3,7 +3,7 @@ import ApiConstants from "./ApiConstants";
 
 const apiInstance = axios.create({
   baseURL: ApiConstants.BASE_URL,
-  timeout: 5000,
+  timeout: 10000,
   headers: {
     "Access-Control-Allow-Origin": "http://localhost:5000",
     "Access-Control-Allow-Headers": "*",
